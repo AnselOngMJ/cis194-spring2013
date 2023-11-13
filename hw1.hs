@@ -21,3 +21,8 @@ isEvenToDigit :: Int -> Integer
 isEvenToDigit x
     | even x    = 2
     | otherwise = 1
+
+-- Exercise 3
+-- Calculates sum of all digits in a list
+sumDigits :: [Integer] -> Integer
+sumDigits ns = sum [sum(toDigits n) | n <- ns]
