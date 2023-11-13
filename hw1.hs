@@ -35,7 +35,7 @@ validate x
     | otherwise                                               = False
 
 -- Exercise 5
--- Returns a list of moves to move pegs from a to b
+-- Returns a list of moves to move discs from peg a to peg b
 type Peg = String
 type Move = (Peg, Peg)
 hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
