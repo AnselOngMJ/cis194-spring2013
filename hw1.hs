@@ -26,3 +26,10 @@ isEvenToDigit x
 -- Calculates sum of all digits in a list
 sumDigits :: [Integer] -> Integer
 sumDigits xs = sum [sum(toDigits x) | x <- xs]
+
+-- Exercise 4
+-- Indicates whether an Integer is a valid credit card number
+validate :: Integer -> Bool
+validate x
+    | sumDigits(doubleEveryOther(toDigits x)) `mod` 10 == 0 = True
+    | otherwise                                             = False
