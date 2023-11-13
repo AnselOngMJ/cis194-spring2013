@@ -25,4 +25,4 @@ isEvenToDigit x
 -- Exercise 3
 -- Calculates sum of all digits in a list
 sumDigits :: [Integer] -> Integer
-sumDigits ns = sum [sum(toDigits n) | n <- ns]
+sumDigits xs = sum [sum(toDigits x) | x <- xs]
