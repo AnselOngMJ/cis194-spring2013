@@ -33,3 +33,11 @@ validate :: Integer -> Bool
 validate x
     | sumDigits(doubleEveryOther(toDigits x)) `mod` 10 == 0 = True
     | otherwise                                             = False
+
+-- Exercise 5
+-- Returns a list of moves to move pegs from a to b
+type Peg = String
+type Move = (Peg, Peg)
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi 0 _ _ _ = []
+hanoi x a b c = hanoi (x - 1) a c b ++ [(a, b)] ++ hanoi (x - 1) c b a
