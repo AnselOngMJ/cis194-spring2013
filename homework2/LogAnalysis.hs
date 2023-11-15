@@ -4,31 +4,26 @@ module LogAnalysis where
 import Log
 
 -- Exercise 1
+-- Returns message in the right format
+formatMessage :: [String] -> String -> LogMessage
+formatMessage ms h = LogMessage messageType (read (ms !! x))
+                   (unwords (drop (x + 1) ms))
+  where messageType
+          | h == "I"  = Info
+          | h == "W"  = Warning
+          | otherwise = Error (read (ms !! 1))
+        x
+          | h == "E"  = 2
+          | otherwise = 1
+
 -- Parses an individual line from the log file
 parseMessage :: String -> LogMessage
 parseMessage m
-  | validateFormat ms = formatMessage ms
-  | otherwise = Unknown "This is not in the right format"
+  | h `elem` ["I", "W", "E"] = formatMessage ms h
+  | otherwise                = Unknown "This is not in the right format"
   where
     ms = words m
-
--- Returns message in the right format
-formatMessage :: [String] -> LogMessage
-formatMessage ms = LogMessage messageType (read (ms !! x))
-                   (unwords (drop (x + 1) ms))
-  where messageType
-          | head ms == "I" = Info
-          | head ms == "W" = Warning
-          | otherwise      = Error (read (ms !! 1))
-        x
-          | head ms == "E" = 2
-          | otherwise      = 1
-
--- Checks if a message is in the right format
-validateFormat :: [String] -> Bool
-validateFormat ms
-  | head ms == "I" || head ms == "W" || head ms == "E" = True
-  | otherwise                                          = False
+    h = head ms
 
 -- Parses a whole log file
 parse :: String -> [LogMessage]
