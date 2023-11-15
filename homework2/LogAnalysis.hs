@@ -7,7 +7,7 @@ import Log
 -- Returns message in the right format
 formatMessage :: [String] -> String -> LogMessage
 formatMessage ms h = LogMessage messageType (read (ms !! x))
-                   (unwords (drop (x + 1) ms))
+                     (unwords (drop (x + 1) ms))
   where messageType
           | h == "I"  = Info
           | h == "W"  = Warning
